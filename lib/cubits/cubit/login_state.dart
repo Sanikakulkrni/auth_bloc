@@ -1,0 +1,34 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import  'login_cubit.dart';
+import 'package:equatable/equatable.dart'; 
+enum LoginStatus { initial, submitting, success, error }
+
+class LoginState extends Equatable {
+  final String email;
+  final String password;
+  final LoginStatus status;
+  const LoginState(
+      {required this.email, required this.password, required this.status});
+  factory LoginState.initial() {
+    return const LoginState(
+      email: '',
+      password: '',
+      status: LoginStatus.initial,
+    );
+  }
+
+  @override
+  List<Object> get props => [email, password, status];
+
+  LoginState copyWith({
+    String? email,
+    String? password,
+    LoginStatus? status,
+  }) {
+    return LoginState(
+      email: email ?? this.email,
+      password: password ?? this.password,
+      status: status ?? this.status,
+    );
+  }
+}
